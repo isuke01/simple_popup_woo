@@ -52,12 +52,15 @@ function isu_popup_code( $atts ) {
     if(is_admin()) return;
     
     $opt = get_option('isu_popup');
-
+    $btn_title = ( isset($opt['button_title']) && $opt['button_title'] != '' )? $opt['button_title'] : __('Meld på nyhetsbrev', 'isu_pop');
+    $title = ( isset($opt['title']) && $opt['title'] != '' )? $opt['title'] : __('Hold deg oppdatert', 'isu_pop');
+    
     $content = ( isset($opt['html']) && $opt['html'] != '' )? $opt['html'] : '';
+    
     $atr = shortcode_atts( array(
         //'id' => null,
-        'button' => 'Subscribe to our newsletter',
-        'title' => 'Subscribe to our newsletter',
+        'button' => $btn_title,
+        'title' => $title,
         'incons' => true,
     ), $atts );
 /*     if(!$atr['id'] && is_user_logged_in()) return '<code style="padding: 6px 9px; background-color: #FF8A65; border-radius: 3px; color: #fff; margin: 10px">Form ID is required</code>';
